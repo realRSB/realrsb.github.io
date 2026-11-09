@@ -81,8 +81,8 @@ const projects={
     ""
   ]
 };
-const order=['atherton','tks','temple','research','liva','hp','senate','deep'];
-const periods={atherton:'2024–present · 6 hr/wk, 40 wk/yr',tks:'2024–2025 · 6 hr/wk, 40 wk/yr',temple:'2024–present · 5 hr/wk, 40 wk/yr',research:'2023–present · 6 hr/wk, 12 wk/yr',liva:'2025 · 5 hr/wk, 20 wk/yr',hp:'2023 · 6 hr/wk, 12 wk/yr',senate:'2024 · 8 hr/wk, 8 wk/yr',deep:'2025 · 12 hr/wk, 8 wk/yr'};
+const order=['atherton','tks','deep','liva','hp','senate','research','temple'];
+const periods={atherton:'2024–present · 6 hr/wk, 40 wk/yr',tks:'2024–2025 · 6 hr/wk, 40 wk/yr',temple:'2024–present · 5 hr/wk, 40 wk/yr',research:'2023–present · 6 hr/wk, 12 wk/yr',liva:'2026 · 5 hr/wk, 20 wk/yr',hp:'2023 · 6 hr/wk, 12 wk/yr',senate:'2025 · 8 hr/wk, 8 wk/yr',deep:'2026 · 12 hr/wk, 8 wk/yr'};
 const links={atherton:['https://www.athertonhealth.co/','Visit Atherton Health'],liva:['https://www.theliva.ai/','Visit Liva AI'],deep:['https://deep24.com/','Visit Deep24']};
 function projectMedia(id){
  if(links[id])return `<a class="resource-link" href="${links[id][0]}" target="_blank" rel="noopener noreferrer">${links[id][1]} ↗</a>`;

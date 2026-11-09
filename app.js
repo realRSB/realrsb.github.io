@@ -56,7 +56,7 @@ const projects={
     "",
     [
       "Selected as the only high-school intern, I screened more than 120 AI medtech startups and developed six investment theses to support venture investment decisions.",
-      "The attached Aquarium Learning pitch deck is a sample of my company analysis. It covers the product, machine-learning data-curation workflows, business model, market, and investment rationale."
+      "My company analysis covered products, business models, markets, and investment rationale."
     ],
     ""
   ],
@@ -85,7 +85,6 @@ const order=['atherton','tks','temple','research','liva','hp','senate','deep'];
 const periods={atherton:'2024–present · 6 hr/wk, 40 wk/yr',tks:'2024–2025 · 6 hr/wk, 40 wk/yr',temple:'2024–present · 5 hr/wk, 40 wk/yr',research:'2023–present · 6 hr/wk, 12 wk/yr',liva:'2025 · 5 hr/wk, 20 wk/yr',hp:'2023 · 6 hr/wk, 12 wk/yr',senate:'2024 · 8 hr/wk, 8 wk/yr',deep:'2025 · 12 hr/wk, 8 wk/yr'};
 const links={atherton:['https://www.athertonhealth.co/','Visit Atherton Health'],liva:['https://www.theliva.ai/','Visit Liva AI'],deep:['https://deep24.com/','Visit Deep24']};
 function projectMedia(id){
- if(id==='hp')return `<a class="deck-preview" href="assets/aquarium-learning-pitch-deck.pdf" target="_blank" rel="noopener noreferrer"><img src="assets/aquarium-deck-cover.png" width="1200" height="675" alt="Cover of Rajveer Singh Bedi’s Aquarium Learning pitch deck"><span>Aquarium Learning · 13-slide pitch deck <span aria-hidden="true">↗</span></span></a><a class="resource-link" href="assets/aquarium-learning-pitch-deck.pdf" download>Download PDF ↓</a>`;
  if(links[id])return `<a class="resource-link" href="${links[id][0]}" target="_blank" rel="noopener noreferrer">${links[id][1]} ↗</a>`;
  return '';
 }

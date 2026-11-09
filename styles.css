@@ -64,3 +64,9 @@ body.dark{--accent:#d7b4a4}body,button,a{font-family:var(--serif)}.mono,.utility
 .education-list{gap:36px}
 footer{padding-top:24px;padding-bottom:24px}
 @media(max-width:540px){.intro{min-height:265px;padding-top:76px}.experiences{padding-top:52px;padding-bottom:36px}.experiences>.section-cap{padding-bottom:24px}.experience{min-height:0;padding-top:20px;padding-bottom:20px}.recognition{padding:24px 0 40px}.award-link{padding:20px 0;min-height:0}.education-section,.contact-section{padding-top:52px;padding-bottom:52px;gap:26px}.education-list{gap:30px}.education-section:after,.contact-section:after{left:0;right:0}}
+/* Awards divider and education/contact date-column alignment. */
+.recognition{border-top:1px solid var(--line)}
+.education-section,.contact-section{padding-top:80px;padding-bottom:80px}
+.contact-section{grid-template-columns:25% 43.5% minmax(0,1fr)}
+@media(max-width:850px) and (min-width:541px){.education-entry{grid-template-columns:58% minmax(0,1fr);gap:0}}
+@media(max-width:540px){.education-section,.contact-section{padding-top:44px;padding-bottom:44px}.contact-section{grid-template-columns:minmax(0,1fr)}}

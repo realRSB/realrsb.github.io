@@ -48,3 +48,19 @@ body.dark{--accent:#d7b4a4}body,button,a{font-family:var(--serif)}.mono,.utility
 @media(hover:hover){.award-link:hover:before{background:var(--surface)}.award-link:hover>.award-category:first-child{color:var(--muted)}.award-link:hover .award-sub span{transform:translate(2px,-2px)}}
 @media(max-width:850px) and (min-width:541px){.award-title{font-size:22px}.award-link .award-sub{font-size:10px}}
 @media(max-width:540px){.recognition{padding:40px 0 56px}.award-link{grid-template-columns:minmax(0,1fr) auto;gap:14px 10px;padding:24px 0}.award-category{grid-column:1/-1}.award-title{grid-column:1;font-size:21px;padding-right:0}.award-link .award-sub{grid-column:2;font-size:9px;letter-spacing:.5px}.award-link:before{inset:0 -8px}}
+/* Consistent hover surfaces, divider widths, and slightly tighter rhythm. */
+.experience:before,.award-link:before{display:none}
+.experience,.award-link{background:transparent;transition:background-color .22s}
+.award-link{border:0;min-height:90px;padding:24px 0}
+.experience{min-height:90px;padding-top:20px;padding-bottom:20px}
+.experience:focus-visible,.award-link:focus-visible{background-color:var(--surface)}
+@media(hover:hover){.experience:hover,.award-link:hover{background-color:var(--surface)}}
+.education-section:after,.contact-section:after{left:0;right:0}
+.intro{min-height:340px;padding-top:112px}
+.experiences{padding-top:80px;padding-bottom:56px}
+.experiences>.section-cap{padding-bottom:40px}
+.recognition{padding:28px 0 56px}
+.education-section,.contact-section{padding-top:96px;padding-bottom:96px}
+.education-list{gap:36px}
+footer{padding-top:24px;padding-bottom:24px}
+@media(max-width:540px){.intro{min-height:265px;padding-top:76px}.experiences{padding-top:52px;padding-bottom:36px}.experiences>.section-cap{padding-bottom:24px}.experience{min-height:0;padding-top:20px;padding-bottom:20px}.recognition{padding:24px 0 40px}.award-link{padding:20px 0;min-height:0}.education-section,.contact-section{padding-top:52px;padding-bottom:52px;gap:26px}.education-list{gap:30px}.education-section:after,.contact-section:after{left:0;right:0}}

@@ -73,46 +73,13 @@ footer{padding-top:24px;padding-bottom:24px}
 
 .arrow-icon{display:inline-block;vertical-align:-.12em;flex:none}
 
-/* Compact project rows use the same layout as experiences. */
-.projects.experiences{padding-bottom:0}
-.projects > .section-cap{padding-bottom:18px}
-.project-detail > p{color:var(--muted);line-height:1.55}
-.project-image{margin:24px 0 0}
-.project-image img{display:block;max-width:100%;max-height:460px;width:auto;height:auto;margin-inline:auto;border:1px solid var(--line)}
-.project-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px}
-.project-links a{display:inline-flex;align-items:center;gap:6px;min-height:44px;border-bottom:1px solid var(--line)}
-
-/* Project cards: native horizontal swipe with one full-width card. */
-.project-nav{display:flex;align-items:center;gap:8px}
-.project-nav[hidden]{display:none}
-.project-nav button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line)}
-.project-nav button:disabled{opacity:.36;cursor:default}
-.project-position{font:11px/1.5 'Courier New',monospace;color:var(--muted)}
-.project-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;padding:4px 0}
-.project-track::-webkit-scrollbar{display:none}
-.project-card{scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);align-items:stretch;min-width:0;text-align:left;padding:0;border:1px solid var(--line);background:var(--paper);transition:background-color .2s}
-.project-card:last-child{scroll-snap-align:end}
-.project-card:focus-visible,.project-nav button:focus-visible{outline-offset:-3px}
-.project-thumb{display:grid;place-items:center;height:156px;overflow:hidden;background:#aaa}
-.project-thumb.project-docshield{background:#0d0d0f}
-.project-thumb img{display:block;width:100%;height:100%;min-height:0;object-fit:contain}
-.project-card-copy{display:flex;flex-direction:column;justify-content:center;gap:9px;padding:16px clamp(12px,2.5vw,32px)}
-.project-kicker{font-size:10px;color:var(--muted);letter-spacing:1px}
-.project-card-title{font-size:clamp(19px,2.6vw,32px);line-height:1.08}
-.project-card-action{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:13px}
-@media(hover:hover){.project-card:hover,.project-nav button:not(:disabled):hover{background:var(--surface)}}
-@media(max-width:680px){.project-track{gap:10px}.project-card{grid-template-columns:minmax(0,40%) minmax(0,1fr)}.project-thumb{height:132px}.project-card-copy{gap:7px}.project-kicker{font-size:9px}.project-card-action{font-size:12px}}
-
 /* Direct links sit beside, rather than inside, the detail buttons. */
-.project-card{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding-right:clamp(8px,2vw,20px)}
 .project-open{min-width:0;align-self:stretch;text-align:left;padding:0}
-.project-open:focus-visible,.direct-link:focus-visible{outline-offset:-3px}
-.direct-links{display:flex;align-items:center;gap:4px}
+.direct-link:focus-visible{outline-offset:-3px}
 .direct-link{display:grid;place-items:center;width:44px;height:44px;color:var(--muted)}
-.direct-links .direct-link{border:1px solid var(--line)}
 .experience-with-link{position:relative}
 .experience-with-link>.direct-link{position:absolute;right:0;top:12px}
-.experiences:not(.projects) .experience{grid-template-columns:25% 17% minmax(0,1fr) 44px}
+.experiences .experience{grid-template-columns:25% 17% minmax(0,1fr) 44px}
 @media(hover:hover){.direct-link:hover{background:var(--surface);color:var(--ink)}}
-@media(max-width:850px){.experiences:not(.projects) .experience{grid-template-columns:30% 23% minmax(0,1fr) 44px}}
-@media(max-width:540px){.experiences:not(.projects) .experience{grid-template-columns:minmax(0,1fr) 44px}.project-card-copy{padding-inline:12px}.direct-links{gap:2px}}
+@media(max-width:850px){.experiences .experience{grid-template-columns:30% 23% minmax(0,1fr) 44px}}
+@media(max-width:540px){.experiences .experience{grid-template-columns:minmax(0,1fr) 44px}}

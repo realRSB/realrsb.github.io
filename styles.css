@@ -70,3 +70,5 @@ footer{padding-top:24px;padding-bottom:24px}
 .contact-section{grid-template-columns:25% 43.5% minmax(0,1fr)}
 @media(max-width:850px) and (min-width:541px){.education-entry{grid-template-columns:58% minmax(0,1fr);gap:0}}
 @media(max-width:540px){.education-section,.contact-section{padding-top:44px;padding-bottom:44px}.contact-section{grid-template-columns:minmax(0,1fr)}}
+
+.arrow-icon{display:inline-block;vertical-align:-.12em;flex:none}

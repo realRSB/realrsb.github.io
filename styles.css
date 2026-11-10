@@ -73,22 +73,11 @@ footer{padding-top:24px;padding-bottom:24px}
 
 .arrow-icon{display:inline-block;vertical-align:-.12em;flex:none}
 
-/* Selected projects */
-.projects{padding:72px 0 0}
-.projects-heading{padding:0 0 18px;align-items:center;border-bottom:1px solid var(--line)}
-.projects-heading h2{font-size:11px;letter-spacing:2px;color:var(--muted)}
-.project-controls{display:flex;align-items:center;gap:10px}
-.project-controls[hidden],.project-slide[hidden]{display:none}
-.project-controls button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);transition:background-color .2s}
-.project-count{font:12px/1.5 'Courier New',monospace;min-width:4.5em;text-align:center}
-.project-slide{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(26px,5vw,72px);align-items:center;padding-top:24px}
-.project-image{margin:0;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}
-.driving-preview{background:#a8a8a8}.docshield-preview{background:#0d0d0f}
-.project-image img{display:block;width:100%;height:100%;min-height:0;object-fit:contain}
-.project-copy h3{font-size:clamp(24px,3vw,40px);font-weight:400;line-height:1.08;margin:12px 0 18px}
-.project-copy p{font-size:17px;line-height:1.5;margin:0 0 12px;color:var(--muted)}
-.project-copy .project-type{font-size:11px;letter-spacing:1.4px}
-.project-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px}
+/* Compact project rows use the same layout as experiences. */
+.projects.experiences{padding-bottom:0}
+.projects > .section-cap{padding-bottom:18px}
+.project-detail > p{color:var(--muted);line-height:1.55}
+.project-image{margin:24px 0 0}
+.project-image img{display:block;max-width:100%;max-height:460px;width:auto;height:auto;margin-inline:auto;border:1px solid var(--line)}
+.project-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px}
 .project-links a{display:inline-flex;align-items:center;gap:6px;min-height:44px;border-bottom:1px solid var(--line)}
-@media(hover:hover){.project-controls button:hover{background:var(--surface)}}
-@media(max-width:680px){.projects{padding-top:48px}.project-slide{grid-template-columns:minmax(0,1fr);gap:22px;padding-top:18px}.project-copy h3{margin-bottom:12px}.project-links{margin-top:10px}}

@@ -82,13 +82,13 @@ footer{padding-top:24px;padding-bottom:24px}
 .project-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px}
 .project-links a{display:inline-flex;align-items:center;gap:6px;min-height:44px;border-bottom:1px solid var(--line)}
 
-/* Project cards: native horizontal swipe with a peek at the next card. */
+/* Project cards: native horizontal swipe with one full-width card. */
 .project-nav{display:flex;align-items:center;gap:8px}
 .project-nav[hidden]{display:none}
 .project-nav button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line)}
 .project-nav button:disabled{opacity:.36;cursor:default}
 .project-position{font:11px/1.5 'Courier New',monospace;color:var(--muted)}
-.project-track{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;padding:4px 0}
+.project-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;padding:4px 0}
 .project-track::-webkit-scrollbar{display:none}
 .project-card{scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);align-items:stretch;min-width:0;text-align:left;padding:0;border:1px solid var(--line);background:var(--paper);transition:background-color .2s}
 .project-card:last-child{scroll-snap-align:end}
@@ -101,4 +101,4 @@ footer{padding-top:24px;padding-bottom:24px}
 .project-card-title{font-size:clamp(19px,2.6vw,32px);line-height:1.08}
 .project-card-action{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:13px}
 @media(hover:hover){.project-card:hover,.project-nav button:not(:disabled):hover{background:var(--surface)}}
-@media(max-width:680px){.project-track{grid-auto-columns:91%;gap:10px}.project-card{grid-template-columns:minmax(0,40%) minmax(0,1fr)}.project-thumb{height:132px}.project-card-copy{gap:7px}.project-kicker{font-size:9px}.project-card-action{font-size:12px}}
+@media(max-width:680px){.project-track{gap:10px}.project-card{grid-template-columns:minmax(0,40%) minmax(0,1fr)}.project-thumb{height:132px}.project-card-copy{gap:7px}.project-kicker{font-size:9px}.project-card-action{font-size:12px}}

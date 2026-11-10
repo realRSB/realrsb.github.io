@@ -96,3 +96,20 @@ document.querySelector('#top').onclick=e=>{e.preventDefault();window.scrollTo({t
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 if(!reduced.matches && 'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('reveal-ready');observer.observe(el)})}
 const cursor=document.querySelector('.cursor-ring');if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduced.matches){document.addEventListener('pointermove',e=>{cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;cursor.classList.add('active');cursor.classList.toggle('over-link',Boolean(e.target.closest('button,a')))});document.documentElement.addEventListener('pointerleave',()=>cursor.classList.remove('active'));document.addEventListener('pointerdown',()=>cursor.classList.add('pressed'));document.addEventListener('pointerup',()=>cursor.classList.remove('pressed'))}
+
+const projectSlides=[...document.querySelectorAll('.project-slide')];
+const projectControls=document.querySelector('.project-controls');
+if(projectSlides.length>1 && projectControls){
+  let selectedProject=0;
+  const count=projectControls.querySelector('.project-count');
+  const showProject=(index)=>{
+    selectedProject=(index+projectSlides.length)%projectSlides.length;
+    projectSlides.forEach((slide,i)=>{slide.hidden=i!==selectedProject});
+    count.textContent=[selectedProject+1,projectSlides.length].map(n=>String(n).padStart(2,'0')).join(' / ');
+  };
+  projectControls.querySelectorAll('[data-project-step]').forEach(button=>{
+    button.addEventListener('click',()=>showProject(selectedProject+Number(button.dataset.projectStep)));
+  });
+  showProject(0);
+  projectControls.hidden=false;
+}

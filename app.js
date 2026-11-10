@@ -96,3 +96,27 @@ document.querySelector('#top').onclick=e=>{e.preventDefault();window.scrollTo({t
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 if(!reduced.matches && 'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('reveal-ready');observer.observe(el)})}
 const cursor=document.querySelector('.cursor-ring');if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduced.matches){document.addEventListener('pointermove',e=>{cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;cursor.classList.add('active');cursor.classList.toggle('over-link',Boolean(e.target.closest('button,a')))});document.documentElement.addEventListener('pointerleave',()=>cursor.classList.remove('active'));document.addEventListener('pointerdown',()=>cursor.classList.add('pressed'));document.addEventListener('pointerup',()=>cursor.classList.remove('pressed'))}
+
+const projectTrack=document.querySelector('.project-track');
+const projectNav=document.querySelector('.project-nav');
+if(projectTrack && projectNav){
+  const previous=projectNav.querySelector('[data-project-step="-1"]');
+  const nextProject=projectNav.querySelector('[data-project-step="1"]');
+  const position=projectNav.querySelector('.project-position');
+  const maxScroll=()=>projectTrack.scrollWidth-projectTrack.clientWidth;
+  const updateProjects=()=>{
+    const offset=projectTrack.scrollLeft;
+    const max=maxScroll();
+    previous.disabled=offset<=1;
+    nextProject.disabled=offset>=max-1;
+    const text=offset>max/2?'02 / 02':'01 / 02';
+    if(position.textContent!==text)position.textContent=text;
+  };
+  const go=(left)=>projectTrack.scrollTo({left,behavior:reduced.matches?'instant':'smooth'});
+  previous.addEventListener('click',()=>go(0));
+  nextProject.addEventListener('click',()=>go(maxScroll()));
+  projectTrack.addEventListener('scroll',updateProjects,{passive:true});
+  window.addEventListener('resize',updateProjects);
+  projectNav.hidden=false;
+  updateProjects();
+}

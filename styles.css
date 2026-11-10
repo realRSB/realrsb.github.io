@@ -102,3 +102,17 @@ footer{padding-top:24px;padding-bottom:24px}
 .project-card-action{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:13px}
 @media(hover:hover){.project-card:hover,.project-nav button:not(:disabled):hover{background:var(--surface)}}
 @media(max-width:680px){.project-track{gap:10px}.project-card{grid-template-columns:minmax(0,40%) minmax(0,1fr)}.project-thumb{height:132px}.project-card-copy{gap:7px}.project-kicker{font-size:9px}.project-card-action{font-size:12px}}
+
+/* Direct links sit beside, rather than inside, the detail buttons. */
+.project-card{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding-right:clamp(8px,2vw,20px)}
+.project-open{min-width:0;align-self:stretch;text-align:left;padding:0}
+.project-open:focus-visible,.direct-link:focus-visible{outline-offset:-3px}
+.direct-links{display:flex;align-items:center;gap:4px}
+.direct-link{display:grid;place-items:center;width:44px;height:44px;color:var(--muted)}
+.direct-links .direct-link{border:1px solid var(--line)}
+.experience-with-link{position:relative}
+.experience-with-link>.direct-link{position:absolute;right:0;top:12px}
+.experiences:not(.projects) .experience{grid-template-columns:25% 17% minmax(0,1fr) 44px}
+@media(hover:hover){.direct-link:hover{background:var(--surface);color:var(--ink)}}
+@media(max-width:850px){.experiences:not(.projects) .experience{grid-template-columns:30% 23% minmax(0,1fr) 44px}}
+@media(max-width:540px){.experiences:not(.projects) .experience{grid-template-columns:minmax(0,1fr) 44px}.project-card-copy{padding-inline:12px}.direct-links{gap:2px}}

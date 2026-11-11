@@ -90,9 +90,54 @@ function projectMedia(id){
 }
 const dialog=document.querySelector('#detail'),content=document.querySelector('#dialog-content'),label=document.querySelector('#dialog-label'),next=document.querySelector('#next');let current,opener;
 function show(id){current=id;const data=projects[id];if(data){label.textContent='Experience / '+String(order.indexOf(id)+1).padStart(2,'0');content.innerHTML=`<h2 id="dialog-title">${data[1]}</h2><p class="lede">${data[0]}</p><article class="entry"><span class="mono">${periods[id]}</span>${data[3].map(paragraph=>`<p>${paragraph}</p>`).join('')}</article>${projectMedia(id)}`;next.hidden=false}else if(id==='awards'){label.textContent='Awards';next.hidden=true;content.innerHTML='<h2 id="dialog-title">Competitions & recognition</h2>'+[['1st place','New Jersey DECA','Travel and Tourism Team Decision Making'],['1st place','IKEA × TKS','Innovation Hackathon'],['1st place','Project Millionaire Canada','Hackathon'],['1st place','XPRIZE × TKS','Quantum Computing Hackathon'],['Top 3','New York Academy of Sciences','Innovation Challenge: Minerals of Technology']].map(a=>`<article class="entry"><span class="mono">${a[0]}</span><h3>${a[1]}</h3><p>${a[2]}</p>${a[1]==='New Jersey DECA'?'<figure class="award-photo"><img src="assets/deca-award.jpg" width="873" height="900" alt="Rajveer Bedi with fellow DECA competitors holding trophies at the awards ceremony"><figcaption>1st place · New Jersey DECA<br>Travel and Tourism Team Decision Making</figcaption></figure>':''}</article>`).join('')}else{label.textContent='General info';next.hidden=true;content.innerHTML=`<h2 id="dialog-title">Rajveer Bedi</h2><p class="lede">AI engineer and student in Livingston, New Jersey.</p><article class="entry"><span class="mono">September 2024–present</span><h3>Livingston High School</h3><p>AP coursework: Calculus BC, Language, Macroeconomics, Microeconomics, Computer Science A, Computer Science Principles, and Business.</p></article>`}if(!dialog.open)dialog.showModal();dialog.scrollTop=0;document.querySelector('#close').focus({preventScroll:true})}
-document.querySelectorAll('[data-modal]').forEach(el=>el.addEventListener('click',()=>{opener=el;show(el.dataset.modal)}));document.querySelector('#close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});dialog.addEventListener('close',()=>opener?.focus({preventScroll:true}));next.onclick=()=>show(order[(order.indexOf(current)+1)%order.length]);
+document.querySelectorAll('[data-modal]').forEach(el=>el.addEventListener('click',()=>{opener=el;show(el.dataset.modal)}));document.querySelector('#close').onclick=closeDetail;dialog.addEventListener('cancel',e=>{e.preventDefault();closeDetail()});dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDetail()}});dialog.addEventListener('close',()=>opener?.focus({preventScroll:true}));next.onclick=()=>show(order[(order.indexOf(current)+1)%order.length]);
 const theme=document.querySelector('#theme');document.body.classList.remove('dark');function themeLabel(){theme.textContent=document.body.classList.contains('dark')?'[ Light mode ]':'[ Dark mode ]'}themeLabel();theme.onclick=()=>{document.body.classList.toggle('dark');themeLabel()};
 document.querySelector('#top').onclick=e=>{e.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})};function clock(){document.querySelector('#time').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(new Date())+' / New Jersey'}clock();setInterval(clock,60000);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 if(!reduced.matches && 'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('reveal-ready');observer.observe(el)})}
 const cursor=document.querySelector('.cursor-ring');if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduced.matches){document.addEventListener('pointermove',e=>{cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;cursor.classList.add('active');cursor.classList.toggle('over-link',Boolean(e.target.closest('button,a')))});document.documentElement.addEventListener('pointerleave',()=>cursor.classList.remove('active'));document.addEventListener('pointerdown',()=>cursor.classList.add('pressed'));document.addEventListener('pointerup',()=>cursor.classList.remove('pressed'))}
+
+function closeDetail(){
+  if(!dialog.open || dialog.classList.contains('panel-closing'))return;
+  if(reduced.matches){dialog.close();return;}
+  dialog.classList.add('panel-closing');
+  const finish=()=>{
+    dialog.removeEventListener('animationend',finish);
+    clearTimeout(fallback);
+    dialog.close();
+    dialog.classList.remove('panel-closing');
+  };
+  const fallback=setTimeout(finish,280);
+  dialog.addEventListener('animationend',finish,{once:true});
+}
+
+if(!reduced.matches && 'IntersectionObserver' in window){
+  const sections=document.querySelectorAll('.recognition,.education-section,.contact-section');
+  const dividerObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('divider-visible');
+      dividerObserver.unobserve(entry.target);
+    }
+  }),{rootMargin:'0px 0px -8% 0px'});
+  sections.forEach(section=>{section.classList.add('divider-reveal');dividerObserver.observe(section)});
+}
+
+const painting=document.querySelector('.painting');
+const desktopMotion=matchMedia('(min-width:851px) and (pointer:fine)');
+if(painting){
+  let frame=0;
+  const updatePainting=()=>{
+    frame=0;
+    if(reduced.matches || !desktopMotion.matches){painting.style.removeProperty('--art-offset');return;}
+    const bounds=painting.getBoundingClientRect();
+    const limit=Math.min(24,bounds.height*.045);
+    const progress=1-2*(bounds.top+bounds.height/2)/window.innerHeight;
+    painting.style.setProperty('--art-offset',Math.max(-limit,Math.min(limit,progress*limit))+'px');
+  };
+  const schedulePainting=()=>{if(!frame)frame=requestAnimationFrame(updatePainting)};
+  window.addEventListener('scroll',()=>{if(desktopMotion.matches && !reduced.matches)schedulePainting()},{passive:true});
+  window.addEventListener('resize',schedulePainting);
+  desktopMotion.addEventListener('change',schedulePainting);
+  reduced.addEventListener('change',schedulePainting);
+  schedulePainting();
+}
